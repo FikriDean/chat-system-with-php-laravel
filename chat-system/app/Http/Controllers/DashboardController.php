@@ -14,6 +14,7 @@ class DashboardController extends Controller
     {
         return view('dashboard', [
             'user' => User::where('id', Auth::id())->first(),
+            'users' => User::all()
         ]);
     }
 }

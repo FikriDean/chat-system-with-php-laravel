@@ -20,6 +20,7 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->string('image')->default('photo_profiles/default_pp.png');
+            $table->integer('window_active')->default(0);
             $table->rememberToken();
             $table->timestamps();
         });

@@ -5,5 +5,25 @@
 }
 
 body {
+ height: 100vh;
  overflow: hidden;
+
+ .full-screen-height {
+  height: 100%;
+ }
+
+ .chat-background {
+  background-color: #91d8e4;
+ }
+
+ .scrollbar::-webkit-scrollbar {
+  width: 6px;
+  background-color: #000000;
+ }
+
+ .scrollbar::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  background-color: #ffffff;
+ }
 }
