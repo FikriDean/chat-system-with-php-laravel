@@ -13,6 +13,10 @@ class Message extends Model
         'id'
     ];
 
+    protected $fillable = [
+        'body',
+    ];
+
     public function user()
     {
         return $this->belongsTo(User::class);

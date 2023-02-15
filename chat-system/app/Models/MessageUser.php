@@ -11,7 +11,13 @@ class MessageUser extends Model
 
     public $table = "message_user";
 
-    protected $protected = [
+    protected $guarded = [
         'id'
+    ];
+
+    protected $fillable = [
+        'user_id',
+        'message_id',
+        'message_to'
     ];
 }

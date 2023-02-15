@@ -10,7 +10,9 @@ use App\Models\Message;
 
 class ChatMessage extends Component
 {
-    protected $listeners = ['refreshChatMessages' => 'refresh'];
+    protected $listeners = [
+        'refreshChatMessages' => 'refresh'
+    ];
 
     public $messageUsers;
     public $user;
@@ -34,6 +36,7 @@ class ChatMessage extends Component
 
     public function refresh()
     {
+        $this->allMessages = Message::all();
         $this->messageUsers = MessageUser::orderBy('id')->where(function ($query) {
             $query->where('user_id', $this->user->window_active)->where('message_to', $this->user->id);
         })->orWhere(function ($query) {
