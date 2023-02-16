@@ -9,21 +9,12 @@ class Message extends Model
 {
     use HasFactory;
 
-    protected $protected = [
+    protected $guarded = [
         'id'
-    ];
-
-    protected $fillable = [
-        'body',
     ];
 
     public function user()
     {
         return $this->belongsTo(User::class);
-    }
-
-    public function users()
-    {
-        return $this->belongsToMany(User::class, 'message_user', 'message_id', 'user_id');
     }
 }

@@ -14,6 +14,8 @@
 
 												<div class="row">
 																<div class="col-sm-12">
+
+
 																				@livewire('chat-list', ['users' => $users])
 																</div>
 												</div>

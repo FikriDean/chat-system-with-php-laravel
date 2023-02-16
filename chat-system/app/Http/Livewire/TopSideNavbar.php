@@ -15,7 +15,10 @@ class TopSideNavbar extends Component
     public function mount($user)
     {
         $this->user = $user;
-        $this->userTarget = User::where('id', $user->window_active)->first()->name;
+
+        if ($user->window_active != 0) {
+            $this->userTarget = User::where('id', $user->window_active)->first();
+        }
     }
 
     public function render()
@@ -25,6 +28,6 @@ class TopSideNavbar extends Component
 
     public function refresh()
     {
-        $this->userTarget = User::where('id', $this->user->window_active)->first()->name;
+        $this->userTarget = User::where('id', $this->user->window_active)->first();
     }
 }

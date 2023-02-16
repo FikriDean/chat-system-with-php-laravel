@@ -13,7 +13,7 @@ class DashboardController extends Controller
     public function index()
     {
         return view('dashboard', [
-            'user' => User::where('id', Auth::id())->first(),
+            'user' => Auth::user(),
             'users' => User::all()
         ]);
     }

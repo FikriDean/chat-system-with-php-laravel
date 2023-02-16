@@ -4,7 +4,6 @@ namespace App\Http\Livewire;
 
 use Livewire\Component;
 use App\Models\Message;
-use App\Models\MessageUser;
 use Illuminate\Support\Facades\Auth;
 
 class MessageInput extends Component
@@ -33,13 +32,11 @@ class MessageInput extends Component
     {
         $validatedData = $this->validate();
 
-        $message = Message::create($validatedData);
+        $validatedData['user_id'] = Auth::id();
 
-        MessageUser::create([
-            'user_id' => Auth::id(),
-            'message_id' => $message->id,
-            'message_to' => Auth::user()->window_active,
-        ]);
+        $validatedData['receiver'] = Auth::user()->window_active;
+
+        Message::create($validatedData);
 
         $this->reset('body');
 

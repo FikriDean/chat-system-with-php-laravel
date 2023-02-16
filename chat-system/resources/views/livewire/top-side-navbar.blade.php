@@ -1,11 +1,17 @@
 <div>
 				<nav class="navbar d-flex flex-column bg-primary">
 								<div class="d-flex justify-content-between align-items-center w-100">
-												<a class="navbar-brand mx-4">
+												<a class="navbar-brand mx-4 d-flex" data-bs-toggle="collapse" href="#collapseExample" role="button"
+																aria-expanded="false" aria-controls="collapseExample">
 																<img src="{{ asset('photo_profiles/default_pp.png') }}" alt="" style="width: 50px; height: 50px"
 																				class="rounded-circle">
-
-																<span class="fs-6 ms-1 text-white">{{ $userTarget }}</span>
+																@isset($userTarget->name)
+																				<div class="flex-column ms-2 d-flex justify-content-center">
+																								<h1 class="ms-1 text-white" style="font-size: 14px">{{ $userTarget->name }}</h1>
+																								<h1 class="ms-1 text-white muted" style="font-size: 10px">
+																												Last Online {{ $userTarget->updated_at->diffForHumans() }}</h1>
+																				</div>
+																@endisset
 												</a>
 
 												<div class="d-flex flex-row mx-3">
@@ -32,6 +38,13 @@
 																</div>
 												</div>
 
+								</div>
+
+								<div class="collapse p-4" id="collapseExample">
+												<div class="card card-body">
+																Some placeholder content for the collapse component. This panel is hidden by default but revealed when
+																the user activates the relevant trigger.
+												</div>
 								</div>
 
 				</nav>
