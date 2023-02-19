@@ -9,22 +9,27 @@ use App\Models\User;
 class ChatList extends Component
 {
     public $users;
+    public $authUser;
+    public $contact_code;
 
-    public function mount($users)
+    public function mount()
     {
-        $this->users = $users;
+        $this->users = User::where('id', '!=', Auth::id())->get();
+        $this->authUser = Auth::user();
     }
 
     public function render()
     {
-        return view('livewire.chat-list', []);
+        return view('livewire.chat-list');
     }
 
-    public function changeWindow($id)
+    public function changeWindow($contact)
     {
-        User::where('id', Auth::id())->update(['window_active' => $id]);
+        $this->contact_code = $contact['contact_code'];
+        User::where('id', Auth::id())->update(['window_active' => $this->contact_code]);
 
-        $this->emit('refreshChatMessages');
-        $this->emit('refreshUserTarget');
+        $this->emit('refreshChatMessages', $this->contact_code);
+        $this->emit('refreshUserTarget', $this->contact_code);
+        $this->emit('refreshInputDiv', $this->contact_code);
     }
 }

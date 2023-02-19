@@ -18,11 +18,12 @@ return new class extends Migration
             $table->string('name');
             $table->string('username');
             $table->string('hashtag');
+            $table->string('status');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->string('image')->default('photo_profiles/default_pp.png');
-            $table->integer('window_active')->default(0);
+            $table->string('window_active')->default('none');
             $table->rememberToken();
             $table->timestamps();
         });

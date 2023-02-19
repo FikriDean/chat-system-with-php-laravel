@@ -8,7 +8,11 @@ use Illuminate\Support\Facades\Auth;
 
 class MessageInput extends Component
 {
+    protected $listeners = ['refreshInputDiv' => 'refresh'];
+
     public $body;
+    public $user;
+    public $contact_code;
 
     protected $rules = [
         'body' => 'required|min:6|max:200'
@@ -21,6 +25,7 @@ class MessageInput extends Component
 
     public function mount()
     {
+        $this->user = Auth::user();
     }
 
     public function render()
@@ -34,12 +39,17 @@ class MessageInput extends Component
 
         $validatedData['user_id'] = Auth::id();
 
-        $validatedData['receiver'] = Auth::user()->window_active;
+        $validatedData['receiver'] = $this->contact_code;
 
         Message::create($validatedData);
 
         $this->reset('body');
 
         $this->emit('refreshChatMessages');
+    }
+
+    public function refresh()
+    {
+        $this->user = Auth::user();
     }
 }

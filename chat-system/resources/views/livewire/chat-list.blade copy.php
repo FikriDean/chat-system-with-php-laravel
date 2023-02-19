@@ -9,15 +9,13 @@
 																				@foreach ($users as $user)
 																								@foreach ($user->contacts as $userContact)
 																												@foreach ($authUser->contacts as $authContact)
-																																@if ($user->id !== Auth::id())
+																																@if ($userContact->contact_code == $authContact->contact_code)
 																																				<tr style="height: 60px"
-																																								class="@if ($user->id == Auth::user()->window_active) bg-primary-subtle @endif"
-																																								wire:click="changeWindow({{ $authContact }})"
-																																								wire:key="item-{{ $user->id }}">
+																																								class="@if ($userContact->contact_code == Auth::user()->window_active) bg-primary-subtle @endif"
+																																								wire:click="changeWindow({{ $userContact->contact_code }})">
 																																								<td>
 																																												<button class="border-0 bg-transparent fs-5">
 																																																{{ $user->name }}
-
 																																												</button>
 																																												<h1 class="fs-6 fw-light fst-italic">{{ $user->status }}</h1>
 																																								</td>

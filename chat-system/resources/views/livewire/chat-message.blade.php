@@ -2,7 +2,7 @@
 				<div wire:poll.500ms>
 								@foreach ($messages as $message)
 												<div
-																class="d-flex flex-row align-items-center test @if (Auth::id() == $message->user->id) justify-content-end @endif)">
+																class="ms-4 d-flex flex-row align-items-center test @if (Auth::id() == $message->user->id) justify-content-end @endif">
 																<div>
 																				<img src="{{ asset('photo_profiles/default_pp.png') }}" alt="" style="height: 40px"
 																								class="rounded-circle">
@@ -15,6 +15,7 @@
 																</div>
 												</div>
 								@endforeach
+
 				</div>
 
 </div>
