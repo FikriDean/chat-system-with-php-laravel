@@ -66,7 +66,7 @@ class DatabaseSeeder extends Seeder
         ]);
 
         Room::create([
-            'room_code' => 'dfe419824FDr',
+            'room_code' => 'dfe419824FDr2',
         ]);
 
         RoomUser::create([
@@ -77,6 +77,21 @@ class DatabaseSeeder extends Seeder
         RoomUser::create([
             'user_id' => 2,
             'room_id' => 1
+        ]);
+
+        RoomUser::create([
+            'user_id' => 1,
+            'room_id' => 2
+        ]);
+
+        RoomUser::create([
+            'user_id' => 2,
+            'room_id' => 2
+        ]);
+
+        RoomUser::create([
+            'user_id' => 3,
+            'room_id' => 2
         ]);
 
         Message::create([
@@ -99,6 +114,36 @@ class DatabaseSeeder extends Seeder
 
         Message::create([
             'user_id' => 2,
+            'room_id' => 1,
+            'body' => 'Ini adalah message keempat',
+        ]);
+
+        Message::create([
+            'user_id' => 2,
+            'room_id' => 1,
+            'body' => 'Ini adalah message kelima',
+        ]);
+
+        Message::create([
+            'user_id' => 1,
+            'room_id' => 1,
+            'body' => 'Ini adalah message keenam',
+        ]);
+
+        Message::create([
+            'user_id' => 1,
+            'room_id' => 1,
+            'body' => 'Ini adalah message ketujuh',
+        ]);
+
+        Message::create([
+            'user_id' => 2,
+            'room_id' => 1,
+            'body' => 'Ini adalah message kedelapan',
+        ]);
+
+        Message::create([
+            'user_id' => 1,
             'room_id' => 1,
             'body' => 'Ini adalah message keempat',
         ]);

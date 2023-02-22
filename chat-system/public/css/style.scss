@@ -12,8 +12,17 @@ body {
   height: 100%;
  }
 
+ .message-background {
+  background-color: #fff;
+  box-shadow: 2px 2px 2px 0.3px rgb(201, 201, 201);
+ }
+
+ .message {
+  color: #24242d;
+ }
+
  .chat-background {
-  background-color: #91d8e4;
+  background-color: #eee;
  }
 
  .scrollbar::-webkit-scrollbar {

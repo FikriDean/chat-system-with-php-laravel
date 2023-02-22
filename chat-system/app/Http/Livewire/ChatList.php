@@ -5,16 +5,17 @@ namespace App\Http\Livewire;
 use Livewire\Component;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+use App\Models\Room;
 
 class ChatList extends Component
 {
-    public $users;
+    public $rooms;
     public $authUser;
-    public $contact_code;
+    public $room_code;
 
     public function mount()
     {
-        $this->users = User::where('id', '!=', Auth::id())->get();
+        $this->rooms = Room::all();
         $this->authUser = Auth::user();
     }
 
@@ -23,13 +24,13 @@ class ChatList extends Component
         return view('livewire.chat-list');
     }
 
-    public function changeWindow($contact)
+    public function changeWindow($room)
     {
-        $this->contact_code = $contact['contact_code'];
-        User::where('id', Auth::id())->update(['window_active' => $this->contact_code]);
+        $this->room_code = $room['room_code'];
+        User::where('id', Auth::id())->update(['window_active' => $this->room_code]);
 
-        $this->emit('refreshChatMessages', $this->contact_code);
-        $this->emit('refreshUserTarget', $this->contact_code);
-        $this->emit('refreshInputDiv', $this->contact_code);
+        $this->emit('refreshChatMessages', $this->room_code);
+        $this->emit('refreshUserTarget', $this->room_code);
+        $this->emit('refreshInput', $this->room_code);
     }
 }

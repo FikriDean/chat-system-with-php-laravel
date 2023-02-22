@@ -74,7 +74,7 @@
 																				serverWait: 500,
 																},
 																// "buttons": ["copy", "csv", "excel", "pdf", "print"]
-												}).buttons().container().appendTo('.custom-datatable_wrapper .col-md-6:eq(0)');
+												}).buttons().container().appendTo('.custom-datatable_wrapper .col-sm-12:eq(0)');
 
 												$("#newchat").DataTable({
 																"searching": true,
@@ -91,7 +91,23 @@
 																				loadingIndicator: true,
 																				serverWait: 500
 																},
-												}).buttons().container().appendTo('.custom-datatable_wrapper .col-md-6:eq(0)');
+												}).buttons().container().appendTo('.custom-datatable_wrapper .col-sm-12:eq(0)');
+
+												$("#newGroup").DataTable({
+																"responsive": true,
+																"lengthChange": false,
+																"autoWidth": true,
+																"paging": false,
+																"info": false,
+																"scrollY": "40vh",
+																"scrollCollapse": true,
+																"scroller": {
+																				displayBuffer: 40,
+																				loadingIndicator: true,
+																				serverWait: 500,
+																},
+																// "buttons": ["copy", "csv", "excel", "pdf", "print"]
+												}).buttons().container().appendTo('.custom-datatable_wrapper .col-sm-12:eq(0)');
 								});
 				</script>
 

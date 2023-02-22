@@ -6,26 +6,23 @@
 												</thead>
 												<tbody>
 																<div>
-																				@foreach ($users as $user)
-																								@foreach ($user->contacts as $userContact)
-																												@foreach ($authUser->contacts as $authContact)
-																																@if ($user->id !== Auth::id())
-																																				<tr style="height: 60px"
-																																								class="@if ($user->id == Auth::user()->window_active) bg-primary-subtle @endif"
-																																								wire:click="changeWindow({{ $authContact }})"
-																																								wire:key="item-{{ $user->id }}">
-																																								<td>
-																																												<button class="border-0 bg-transparent fs-5">
-																																																{{ $user->name }}
-
-																																												</button>
-																																												<h1 class="fs-6 fw-light fst-italic">{{ $user->status }}</h1>
-																																								</td>
-																																				</tr>
-																																@endif
-																												@endforeach
-																								@endforeach
+																				@foreach ($authUser->rooms as $authRoom)
+																								<tr style="height: 60px" class="" wire:click="changeWindow({{ $authRoom }})"
+																												wire:key="item-{{ $authUser->id }}">
+																												<td>
+																																@foreach ($authRoom->users as $authRoomUser)
+																																				@if ($authRoomUser->id != Auth::id())
+																																								<button class="border-0 bg-transparent fs-5">
+																																												- {{ $authRoomUser->name }}
+																																								</button>
+																																				@endif
+																																@endforeach
+																												</td>
+																								</tr>
 																				@endforeach
+
+
+
 																</div>
 												</tbody>
 

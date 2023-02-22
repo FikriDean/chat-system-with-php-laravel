@@ -20,35 +20,27 @@
 
 								</div>
 
-								{{-- @if ($user->window_active == 0)
-												background-image: url('/img/no-chat-default.jpg'); background-size: contain; background-position-x: left;
-								@endif --}}
-
 								<div class="border-1 border-start col-sm-8 m-0 p-0 full-screen-height d-flex flex-column justify-content-between"
 												style="height: 100vh;">
-												<div>
+												<div class="bg-danger w-100">
 																<div class="row">
 																				<div class="col-sm-12">
-																								@livewire('top-side-navbar', ['user' => $user])
+																								@livewire('top-side-navbar')
 																				</div>
 																</div>
 
 																<div class="row">
 																				<div class="col-sm-12">
-																								<div style="max-height: 80vh; overflow-y: scroll">
+																								<div class="chat-background" style="max-height: 75vh; overflow-y: scroll;">
 																												@livewire('chat-message')
 																								</div>
 																				</div>
 																</div>
 												</div>
 
-												<div class="d-flex justify-content-start px-4">
+												<div class="h-100 d-flex justify-content-start p-2 align-items-end chat-background">
 																@livewire('message-input')
 												</div>
 								</div>
 				</div>
-@endsection
-
-@section('custom_scripts')
-				<script></script>
 @endsection

@@ -14,8 +14,18 @@ body .full-screen-height {
   height: 100%;
 }
 
+body .message-background {
+  background-color: #fff;
+  -webkit-box-shadow: 2px 2px 2px 0.3px #c9c9c9;
+          box-shadow: 2px 2px 2px 0.3px #c9c9c9;
+}
+
+body .message {
+  color: #24242d;
+}
+
 body .chat-background {
-  background-color: #91d8e4;
+  background-color: #eee;
 }
 
 body .scrollbar::-webkit-scrollbar {

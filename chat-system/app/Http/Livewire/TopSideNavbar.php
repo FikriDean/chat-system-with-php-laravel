@@ -3,6 +3,7 @@
 namespace App\Http\Livewire;
 
 use Livewire\Component;
+use App\Models\Room;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 
@@ -10,16 +11,12 @@ class TopSideNavbar extends Component
 {
     protected $listeners = ['refreshUserTarget' => 'refresh'];
 
+    public $room;
     public $user;
-    public $userTarget;
 
-    public function mount($user)
+    public function mount()
     {
-        $this->user = $user;
-
-        if ($user->window_active != 0) {
-            $this->userTarget = User::where('id', $user->window_active)->first();
-        }
+        $this->user = Auth::user();
     }
 
     public function render()
@@ -27,8 +24,8 @@ class TopSideNavbar extends Component
         return view('livewire.top-side-navbar');
     }
 
-    public function refresh($contact_code)
+    public function refresh($room_code)
     {
-        $this->userTarget = User::where('id', '!=', Auth::id())->where('window_active', $contact_code)->first();
+        $this->room = Room::where('room_code', $room_code)->first();
     }
 }
