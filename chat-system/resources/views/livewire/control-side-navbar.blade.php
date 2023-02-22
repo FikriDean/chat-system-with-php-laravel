@@ -12,58 +12,6 @@
 												</a>
 
 												<div class="d-flex flex-row mx-2 align-items-center">
-																<div class="mx-2">
-																				{{-- <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas"
-																								data-bs-target="#newChatCanvas" aria-controls="newChatCanvas">
-																								<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="#E9E8E8"
-																												class="bi bi-chat-left-text-fill" viewBox="0 0 16 16">
-																												<path
-																																d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H4.414a1 1 0 0 0-.707.293L.854 15.146A.5.5 0 0 1 0 14.793V2zm3.5 1a.5.5 0 0 0 0 1h9a.5.5 0 0 0 0-1h-9zm0 2.5a.5.5 0 0 0 0 1h9a.5.5 0 0 0 0-1h-9zm0 2.5a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1h-5z" />
-																								</svg>
-																				</button> --}}
-
-																				{{-- <div class="offcanvas offcanvas-start" tabindex="-1" id="newChatCanvas"
-																								aria-labelledby="newChatLabel">
-																								<div class="offcanvas-header">
-																												<h5 class="offcanvas-title" id="newChatLabel">
-																																<span class="fw-bold">Contacts on
-																																				New Chat
-																																</span>
-																												</h5>
-																												<button type="button" class="btn-close" data-bs-dismiss="offcanvas"
-																																aria-label="Close"></button>
-																								</div>
-																								<div class="offcanvas-body">
-																												<table class="table table-bordered table-striped m-0 p-0" id="newchat">
-																																<thead>
-																																				<tr>
-																																								<th>
-																																												Contacts on Chat Application
-																																								</th>
-
-																																				</tr>
-																																</thead>
-																																<tbody>
-																																				@foreach ($users as $user)
-																																								@if ($user->id != Auth::id())
-																																												<tr>
-																																																<td>
-																																																				<button data-bs-dismiss="offcanvas" aria-label="Close"
-																																																								class="border-0 bg-transparent">
-																																																								{{ $user->name }}
-																																																				</button>
-																																																</td>
-																																												</tr>
-																																								@endif
-																																				@endforeach
-
-
-																																</tbody>
-																												</table>
-																								</div>
-																				</div> --}}
-																</div>
-
 																<button class="btn btn-primary active" type="button" id="addContactButton">
 																				<svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor"
 																								class="bi bi-person-fill-add" viewBox="0 0 16 16">
@@ -106,89 +54,9 @@
 
 								</div>
 
-								<div class="flex-column justify-content-between align-items-center w-100 p-4" id="addContactDiv">
-												@if ($roomHasBeenCreated == true)
-																<div class="alert alert-warning d-flex align-items-center" role="alert">
-																				<svg xmlns="http://www.w3.org/2000/svg" class="bi bi-exclamation-triangle-fill flex-shrink-0 me-2"
-																								width="14" height="14" viewBox="0 0 16 16" role="img" aria-label="Warning:">
-																								<path
-																												d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
-																				</svg>
-																				<div>
-																								This person is already in your Contact
-																				</div>
-																</div>
-												@endif
+								@livewire('create-new-contact')
 
-												@if ($accountInvalid == true)
-																<div class="alert alert-primary d-flex align-items-center" role="alert">
-																				<svg xmlns="http://www.w3.org/2000/svg" class="bi bi-exclamation-triangle-fill flex-shrink-0 me-2"
-																								width="14" height="14" viewBox="0 0 16 16" role="img" aria-label="Warning:">
-																								<path
-																												d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
-																				</svg>
-																				<div>
-																								User not found
-																				</div>
-																</div>
-												@endif
-
-												@if ($newRoomCreated == true)
-																<div class="alert alert-success d-flex align-items-center" role="alert">
-																				<svg width="14" height="14" class="bi flex-shrink-0 me-2" role="img"
-																								aria-label="Success:">
-																								<use xlink:href="#check-circle-fill" />
-																				</svg>
-																				<div>
-																								Contact has been added succesfully
-																				</div>
-																</div>
-												@endif
-												<div class="input-group mb-3">
-																<span class="input-group-text" id="basic-addon1">@</span>
-																<input type="text" class="form-control me-1" placeholder="Username" wire:model="username">
-																<span class="input-group-text ms-1" id="basic-addon1">#</span>
-																<input type="text" class="form-control" placeholder="Hashtag" wire:model="hashtag">
-																@error('username')
-																				<span class="error mt-2 text-danger bg-light p-2 w-100">{{ $message }}</span>
-																@enderror
-																@error('hashtag')
-																				<span class="error mt-2 text-danger bg-light p-2 w-100">{{ $message }}</span>
-																@enderror
-												</div>
-												<button type="button" class="btn btn-info w-100" wire:click="addRoomPerson">Add
-																Contact</button>
-								</div>
-
-								<div class="flex-column justify-content-center align-items-center p-4 w-100" id="addGroupDiv">
-												<div>
-																<table class="table table-bordered table-striped m-0 p-0" id="newGroup">
-																				<thead>
-																								<tr>
-																												<th>
-																																Create a New Group With
-																												</th>
-
-																								</tr>
-																				</thead>
-																				<tbody class="bg-light">
-																								@foreach ($allContact as $userContact)
-																												@for ($i = 0; $i < 10; $i++)
-																																<tr>
-																																				<td>
-																																								<input class="form-check-input me-2" type="checkbox">
-																																								<span>{{ $userContact->name }}</span>
-
-																																				</td>
-																																</tr>
-																												@endfor
-																								@endforeach
-																				</tbody>
-																</table>
-												</div>
-
-												<button class="btn btn-info w-100 mt-4">Create Group</button>
-								</div>
+								@livewire('create-new-group', ['user' => $user])
 
 
 				</nav>
@@ -224,7 +92,5 @@
 												$('#addContactButton').trigger('click');
 												$('#addGroupButton').trigger('click');
 								});
-
-								$('#exames_filter').parent().attr("col-sm-12 col-md-6", "class");
 				</script>
 @endsection

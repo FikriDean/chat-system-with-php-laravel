@@ -17,7 +17,3 @@
 								</div>
 				@endisset
 </div>
-
-@section('custom_scripts')
-				<script></script>
-@endsection
