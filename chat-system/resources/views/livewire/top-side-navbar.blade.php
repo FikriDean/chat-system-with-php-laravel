@@ -1,5 +1,5 @@
 <div>
-				<div wire:poll.500ms>
+				<div>
 								@isset($room)
 												<nav class="navbar d-flex flex-column bg-primary">
 																<div class="d-flex justify-content-between align-items-center w-100">
@@ -75,6 +75,10 @@
 
 												</nav>
 								@endisset
+				</div>
+
+				<div wire:loading.delay.shortest class="bg-primary-subtle w-100">
+								Processing Chat Room...
 				</div>
 
 </div>

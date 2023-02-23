@@ -16,6 +16,14 @@ class ChatMessage extends Component
     public $messages;
     public $user;
 
+    public function mount()
+    {
+        $this->user = Auth::user();
+        $this->messages = Message::orderBy('id')->whereHas('room', function ($query) {
+            $query->where('room_code', $this->user->window_active);
+        })->get();
+    }
+
     public function render()
     {
         return view('livewire.chat-message');
@@ -23,7 +31,6 @@ class ChatMessage extends Component
 
     public function refresh($room_code)
     {
-        $this->user = Auth::user();
         $this->messages = Message::orderBy('id')->whereHas('room', function ($query) use ($room_code) {
             $query->where('room_code', $room_code);
         })->get();

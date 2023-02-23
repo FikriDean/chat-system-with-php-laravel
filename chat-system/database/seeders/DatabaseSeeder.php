@@ -51,7 +51,7 @@ class DatabaseSeeder extends Seeder
         ]);
 
         User::factory()->create([
-            'name' => 'Nabil Ahmad Syaputra',
+            'name' => 'Nabila Ahmad Syaputra',
             'username' => 'nabil',
             'hashtag' => '150',
             'status' => 'Aku adalah bendahara',
@@ -62,11 +62,13 @@ class DatabaseSeeder extends Seeder
 
         Room::create([
             'room_code' => 'dfe419824FDr',
+            'room_name' => 'Kelompok Matematika'
             // 'room_code' => $faker->regexify('[A-Za-z0-9]{20}')
         ]);
 
         Room::create([
             'room_code' => 'dfe419824FDr2',
+            'room_name' => 'Kelompok Aljabar Linear'
         ]);
 
         RoomUser::create([

@@ -15,14 +15,10 @@ class MessageInput extends Component
     public $user;
     public $contact_code;
 
-    // protected $rules = [
-    //     'body' => 'required|min:6|max:200'
-    // ];
-
-    // public function updated($body)
-    // {
-    //     $this->validateOnly($body);
-    // }
+    public function mount()
+    {
+        $this->user = Auth::user();
+    }
 
     public function render()
     {

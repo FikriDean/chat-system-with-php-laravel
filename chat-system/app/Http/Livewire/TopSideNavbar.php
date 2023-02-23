@@ -17,6 +17,7 @@ class TopSideNavbar extends Component
     public function mount()
     {
         $this->user = Auth::user();
+        $this->room = Room::where('room_code', Auth::user()->window_active)->first();
     }
 
     public function render()

@@ -75,7 +75,8 @@ class CreateNewContact extends Component
         };
 
         $newRoom = Room::create([
-            'room_code' => $this->getRoomCode()
+            'room_code' => $this->getRoomCode(),
+            'room_name' => $accountValid->name
         ]);
 
         User::where('id', auth::id())->first()->rooms()->attach($newRoom['id']);

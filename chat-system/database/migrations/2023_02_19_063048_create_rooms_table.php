@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('rooms', function (Blueprint $table) {
             $table->id();
             $table->string('room_code');
+            $table->string('room_name');
             $table->string('image')->default('photo_profiles/profile_group.png');
             $table->timestamps();
         });
