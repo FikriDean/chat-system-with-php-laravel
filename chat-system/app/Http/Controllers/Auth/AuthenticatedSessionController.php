@@ -38,7 +38,7 @@ class AuthenticatedSessionController extends Controller
      */
     public function destroy(Request $request): RedirectResponse
     {
-        User::where('id', Auth::id())->update(['window_active' => 0]);
+        User::where('id', Auth::id())->update(['window_active' => 'none']);
 
         Auth::guard('web')->logout();
 

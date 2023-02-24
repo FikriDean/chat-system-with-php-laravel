@@ -9,7 +9,10 @@ use Illuminate\Support\Facades\Auth;
 
 class MessageInput extends Component
 {
-    protected $listeners = ['refreshInput' => 'refresh'];
+    protected $listeners = [
+        'refreshInput' => 'refresh',
+        'closeChatMessageInput' => 'closeChat'
+    ];
 
     public $body;
     public $user;
@@ -45,5 +48,9 @@ class MessageInput extends Component
     public function refresh()
     {
         $this->user = Auth::user();
+    }
+
+    public function closeChat()
+    {
     }
 }

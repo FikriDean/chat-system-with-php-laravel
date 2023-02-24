@@ -25,7 +25,9 @@ body .message {
 }
 
 body .chat-background {
-  background-color: #eee;
+  background-image: url("../img/no-chat-default.jpg");
+  background-position: top;
+  background-size: contain;
 }
 
 body .scrollbar::-webkit-scrollbar {

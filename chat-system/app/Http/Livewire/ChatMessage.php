@@ -10,7 +10,8 @@ use App\Models\Message;
 class ChatMessage extends Component
 {
     protected $listeners = [
-        'refreshChatMessages' => 'refresh'
+        'refreshChatMessages' => 'refresh',
+        'closeChatMessage' => 'closeChat'
     ];
 
     public $messages;
@@ -34,5 +35,9 @@ class ChatMessage extends Component
         $this->messages = Message::orderBy('id')->whereHas('room', function ($query) use ($room_code) {
             $query->where('room_code', $room_code);
         })->get();
+    }
+
+    public function closeChat()
+    {
     }
 }

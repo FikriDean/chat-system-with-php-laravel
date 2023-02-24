@@ -71,6 +71,26 @@ class DatabaseSeeder extends Seeder
             'room_name' => 'Kelompok Aljabar Linear'
         ]);
 
+        Room::create([
+            'room_code' => 'dfe419824FDr3',
+            'room_name' => 'Kelompok ituh'
+        ]);
+
+        Room::create([
+            'room_code' => 'dfe419824FDr4',
+            'room_name' => 'Kelompok 4'
+        ]);
+
+        Room::create([
+            'room_code' => 'dfe419824FDr5',
+            'room_name' => 'Kelompok 5'
+        ]);
+
+        Room::create([
+            'room_code' => 'dfe419824FDr6',
+            'room_name' => 'Kelompok 6'
+        ]);
+
         RoomUser::create([
             'user_id' => 1,
             'room_id' => 1
@@ -94,6 +114,61 @@ class DatabaseSeeder extends Seeder
         RoomUser::create([
             'user_id' => 3,
             'room_id' => 2
+        ]);
+
+        RoomUser::create([
+            'user_id' => 1,
+            'room_id' => 3
+        ]);
+
+        RoomUser::create([
+            'user_id' => 3,
+            'room_id' => 3
+        ]);
+
+        RoomUser::create([
+            'user_id' => 1,
+            'room_id' => 4
+        ]);
+
+        RoomUser::create([
+            'user_id' => 2,
+            'room_id' => 4
+        ]);
+
+        RoomUser::create([
+            'user_id' => 3,
+            'room_id' => 4
+        ]);
+
+        RoomUser::create([
+            'user_id' => 1,
+            'room_id' => 5
+        ]);
+
+        RoomUser::create([
+            'user_id' => 2,
+            'room_id' => 5
+        ]);
+
+        RoomUser::create([
+            'user_id' => 3,
+            'room_id' => 5
+        ]);
+
+        RoomUser::create([
+            'user_id' => 1,
+            'room_id' => 6
+        ]);
+
+        RoomUser::create([
+            'user_id' => 2,
+            'room_id' => 6
+        ]);
+
+        RoomUser::create([
+            'user_id' => 3,
+            'room_id' => 6
         ]);
 
         Message::create([

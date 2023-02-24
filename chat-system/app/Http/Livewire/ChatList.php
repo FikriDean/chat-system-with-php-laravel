@@ -9,6 +9,10 @@ use App\Models\Room;
 
 class ChatList extends Component
 {
+    protected $listeners = [
+        'refreshChatList' => 'refresh',
+    ];
+
     public $rooms;
     public $authUser;
     public $room_code;
@@ -32,5 +36,11 @@ class ChatList extends Component
         $this->emit('refreshChatMessages', $this->room_code);
         $this->emit('refreshUserTarget', $this->room_code);
         $this->emit('refreshInput', $this->room_code);
+    }
+
+    public function refresh()
+    {
+        $this->rooms = Room::all();
+        $this->authUser = Auth::user();
     }
 }

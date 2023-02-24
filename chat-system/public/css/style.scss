@@ -22,7 +22,10 @@ body {
  }
 
  .chat-background {
-  background-color: #eee;
+  // background-color: #eee;
+  background-image: url("../img/no-chat-default.jpg");
+  background-position: top;
+  background-size: contain;
  }
 
  .scrollbar::-webkit-scrollbar {
