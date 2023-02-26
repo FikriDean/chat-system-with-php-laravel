@@ -8,9 +8,11 @@ use App\Models\BlockedContact;
 
 class RemoveBlocked extends Component
 {
-    public $authBlocked;
-
+    // Menambahkan $listeners agar bisa di-emit dari livewire lain
     protected $listeners = ['refreshBlockedContacts' => 'refresh'];
+
+    // Variable kontak yang di blokir user yang login
+    public $authBlocked;
 
     public function mount()
     {
@@ -27,10 +29,16 @@ class RemoveBlocked extends Component
         $this->authBlocked = Auth::user()->blockedContacts;
     }
 
+    // Function unblock Contact
     public function unblock($hashtag)
     {
+        // Mendapatkan kontak yang diblokir dengan mencocokkan hashtag
         $contactToBeRemove = BlockedContact::where('user_id', Auth::id())->where('hashtag', $hashtag)->first();
+
+        // Menghapus kontak terkait
         $contactToBeRemove->delete();
+
+        // Menjalankan function refresh
         $this->refresh();
     }
 }

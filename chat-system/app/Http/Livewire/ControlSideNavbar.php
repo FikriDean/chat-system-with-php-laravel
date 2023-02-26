@@ -9,11 +9,13 @@ use Illuminate\Support\Facades\Auth;
 
 class ControlSideNavbar extends Component
 {
-    public $user;
-
+    // Menambahkan $listeners agar bisa di-emit dari livewire lain
     protected $listeners = [
         'refreshControl' => 'refresh',
     ];
+
+    // Membuat variable yang dibutuhkan
+    public $user;
 
     public function mount($user, $users)
     {

@@ -39,29 +39,34 @@ class ProfileController extends Controller
 
         $checkemail = $request->user()->email_verification;
 
+        // Mengupdate hashtag akun yang sedang login di tabel BlockedContact agar sinkron
         BlockedContact::where('hashtag', Auth::user()->hashtag)->update([
             'hashtag' => strtolower($request->hashtag)
         ]);
 
-        $user = User::where('id', $request->user()->id)->update([
+        // Melakukan update pada user yang sedang login
+        User::where('id', $request->user()->id)->update([
             'name' => $request->name,
             'username' => strtolower($request->username),
             'hashtag' => strtolower($request->hashtag),
             'email' => $request->email,
         ]);
 
-
+        // Mengecek apakah terdapat request berbentuk file dengan nama image dan menguploadnya
         if ($request->file('image')) {
+            // Validasi image yang diupload
             $validatedDataImage = $request->validate([
                 'image' => ['image', 'file', 'max:2048'],
             ]);
 
+            // Melakukan proses store image
             $validatedDataImage['image'] = $request->file('image')->store('photo_profiles');
             $image = $request->file('image');
             $input['imageName'] = $validatedDataImage['image'];
             $destinationPath = public_path('/photo_profiles');
             $image->move($destinationPath, $input['imageName']);
 
+            // Melakukan update foto profil pada akun yang sedang login
             User::where('id', $request->user()->id)->update($validatedDataImage);
         }
 
