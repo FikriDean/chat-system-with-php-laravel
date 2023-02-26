@@ -11,6 +11,7 @@ use App\Models\User;
 use App\Models\Message;
 use App\Models\Room;
 use App\Models\RoomUser;
+use App\Models\BlockedContact;
 
 class DatabaseSeeder extends Seeder
 {
@@ -34,28 +35,48 @@ class DatabaseSeeder extends Seeder
             'name' => 'Fikri Dean',
             'username' => 'fikridean',
             'hashtag' => '163',
-            'status' => 'Aku sayang Allah',
+            'status' => 'Affh Iyyh',
             'email' => 'deanradityo@gmail.com',
             'email_verified_at' => '2023-02-06 20:05:57',
             'password' => Hash::make('password'),
         ]);
 
         User::factory()->create([
-            'name' => 'Safira Putri Fadhillah',
-            'username' => 'safira',
+            'name' => 'Budi Bin Afwan',
+            'username' => 'budiman',
             'hashtag' => '100',
-            'status' => 'Ini statusku.',
-            'email' => 'safira@gmail.com',
+            'status' => 'Dunia ini hanyalah sementara',
+            'email' => 'budi@gmail.com',
             'email_verified_at' => '2023-02-06 20:05:57',
             'password' => Hash::make('password'),
         ]);
 
         User::factory()->create([
-            'name' => 'Nabila Ahmad Syaputra',
-            'username' => 'nabil',
+            'name' => 'Kharisma Binti Humaira',
+            'username' => 'kharisma',
             'hashtag' => '150',
-            'status' => 'Aku adalah bendahara',
-            'email' => 'nabil@gmail.com',
+            'status' => 'Money is part of my life',
+            'email' => 'kharisma@gmail.com',
+            'email_verified_at' => '2023-02-06 20:05:57',
+            'password' => Hash::make('password'),
+        ]);
+
+        User::factory()->create([
+            'name' => 'testing1',
+            'username' => 'testing1',
+            'hashtag' => '345',
+            'status' => 'Money is part of my life',
+            'email' => 'testing1@gmail.com',
+            'email_verified_at' => '2023-02-06 20:05:57',
+            'password' => Hash::make('password'),
+        ]);
+
+        User::factory()->create([
+            'name' => 'testing2',
+            'username' => 'testing2',
+            'hashtag' => '324',
+            'status' => 'Money is part of my life',
+            'email' => 'testing2@gmail.com',
             'email_verified_at' => '2023-02-06 20:05:57',
             'password' => Hash::make('password'),
         ]);
@@ -63,7 +84,6 @@ class DatabaseSeeder extends Seeder
         Room::create([
             'room_code' => 'dfe419824FDr',
             'room_name' => 'Kelompok Matematika'
-            // 'room_code' => $faker->regexify('[A-Za-z0-9]{20}')
         ]);
 
         Room::create([
@@ -73,22 +93,22 @@ class DatabaseSeeder extends Seeder
 
         Room::create([
             'room_code' => 'dfe419824FDr3',
-            'room_name' => 'Kelompok ituh'
+            'room_name' => 'Kelompok Tekno Informatika'
         ]);
 
         Room::create([
             'room_code' => 'dfe419824FDr4',
-            'room_name' => 'Kelompok 4'
+            'room_name' => 'Kelompok Scholarship'
         ]);
 
         Room::create([
             'room_code' => 'dfe419824FDr5',
-            'room_name' => 'Kelompok 5'
+            'room_name' => 'Kelompok Bangkit'
         ]);
 
         Room::create([
             'room_code' => 'dfe419824FDr6',
-            'room_name' => 'Kelompok 6'
+            'room_name' => 'Kelompok Mandiri'
         ]);
 
         RoomUser::create([
@@ -224,5 +244,12 @@ class DatabaseSeeder extends Seeder
             'room_id' => 1,
             'body' => 'Ini adalah message keempat',
         ]);
+
+        // BlockedContact::create([
+        //     'user_id' => 1,
+        //     'name' => 'Kharisma Binti Humaira',
+        //     'username' => 'kharisma',
+        //     'hashtag' => 150,
+        // ]);
     }
 }

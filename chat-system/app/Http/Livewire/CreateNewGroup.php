@@ -10,6 +10,7 @@ use App\Models\Room;
 class CreateNewGroup extends Component
 {
     public $user;
+    // public $rooms;
     public $selectedContacts = [];
     public $groupName;
     public $search;
@@ -32,12 +33,16 @@ class CreateNewGroup extends Component
     public function mount($user)
     {
         $this->user = $user;
+        // $this->rooms = Room::all();
     }
 
     public function render()
     {
         return view('livewire.create-new-group', [
-            'allContacts' => User::where('id', '!=', $this->user->id)->where('name', 'like', '%' . $this->search . '%')->get(),
+            // 'allContacts' => User::where('id', '!=', $this->user->id)->where('name', 'like', '%' . $this->search . '%')->get(),
+            'relatedRoom' => Room::whereHas('users', function ($query) {
+                $query->where('username', Auth::user()->username);
+            })->where('room_name', 'like', '%' . $this->search . '%')->get()
         ]);
     }
 
@@ -74,14 +79,13 @@ class CreateNewGroup extends Component
             User::where('id', $userContactId)->first()->rooms()->attach($newRoom['id']);
         }
 
-        $this->emit('refreshContact');
+        $this->refresh();
+        session()->flash('roomCreated', 'Group created succesfully.');
     }
 
     public function refresh()
     {
         $this->selectedContacts = [];
         $this->groupName = [];
-
-        session()->flash('roomCreated', 'Group created succesfully.');
     }
 }

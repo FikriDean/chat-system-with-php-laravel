@@ -7,7 +7,8 @@
 																								<div
 																												class="ms-4 d-flex align-items-center @if (Auth::id() == $message->user->id) justify-content-end @endif">
 																												<div>
-																																<img src="{{ asset($message->user->image) }}" style="height: 40px" class="rounded-circle">
+																																<img src="{{ asset($message->user->image) }}" style="height: 40px; width: 40px;"
+																																				class="rounded-circle">
 																												</div>
 
 																												<div class="d-flex flex-column mx-4 p-3 my-4 message-background d-flex justify-content-center @if ($message->user->id != $user->id) align-items-start @else align-items-end @endif rounded"

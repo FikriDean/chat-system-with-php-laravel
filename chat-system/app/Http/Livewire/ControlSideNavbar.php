@@ -11,6 +11,10 @@ class ControlSideNavbar extends Component
 {
     public $user;
 
+    protected $listeners = [
+        'refreshControl' => 'refresh',
+    ];
+
     public function mount($user, $users)
     {
         $this->user = $user;
@@ -19,5 +23,9 @@ class ControlSideNavbar extends Component
     public function render()
     {
         return view('livewire.control-side-navbar');
+    }
+
+    public function refresh()
+    {
     }
 }

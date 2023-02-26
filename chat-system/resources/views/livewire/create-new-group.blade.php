@@ -37,19 +37,38 @@
 																</tr>
 												</thead>
 												<tbody class="bg-light">
-																@foreach ($allContacts as $userContact)
-																				@foreach ($userContact->rooms as $userRoom)
-																								@if ($userRoom->users->count() == 2 && $userRoom->users->where('id', Auth::id()))
-																												<tr>
-																																<td>
-																																				<input class="form-check-input me-2" type="checkbox" wire:model='selectedContacts'
-																																								value={{ $userContact['id'] }}>
-																																				<span>{{ $userContact['name'] }}</span>
-																																</td>
-																												</tr>
-																								@endif
-																				@endforeach
+																@foreach ($relatedRoom as $room)
+																				@if ($room->users->count() == 2)
+																								@foreach ($room->users as $relatedUser)
+																												@if ($relatedUser->id != Auth::id())
+																																<tr>
+																																				<td>
+																																								<input class="form-check-input me-2" type="checkbox"
+																																												wire:model='selectedContacts' value={{ $relatedUser['id'] }}
+																																												wire:key="item-{{ $relatedUser['id'] }}">
+																																								<span>{{ $relatedUser['name'] }}</span>
+																																				</td>
+																																</tr>
+																												@endif
+																								@endforeach
+																				@endif
 																@endforeach
+																{{-- @foreach ($rooms as $room)
+																				@if ($room->users->count() == 2 && $room->users->where('id', Auth::id())->first())
+																								@foreach ($room->users as $userInRoom)
+																												@if ($userInRoom->id != Auth::id())
+																																<tr>
+																																				<td>
+																																								<input class="form-check-input me-2" type="checkbox"
+																																												wire:model='selectedContacts' value={{ $userInRoom['id'] }}
+																																												wire:key="item-{{ $userInRoom['id'] }}">
+																																								<span>{{ $userInRoom['name'] }}</span>
+																																				</td>
+																																</tr>
+																												@endif
+																								@endforeach
+																				@endif
+																@endforeach --}}
 												</tbody>
 								</table>
 

@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\BlockedContact;
 use Livewire\Component;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
@@ -16,11 +17,13 @@ class ChatList extends Component
     public $rooms;
     public $authUser;
     public $room_code;
+    public $blockedContacts;
 
     public function mount()
     {
         $this->rooms = Room::all();
         $this->authUser = Auth::user();
+        $this->blockedContacts = Auth::user()->blockedContacts;
     }
 
     public function render()

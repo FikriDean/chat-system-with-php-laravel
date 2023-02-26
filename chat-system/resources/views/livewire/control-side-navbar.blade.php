@@ -4,14 +4,14 @@
 												<a class="navbar-brand ps-4 d-flex flex-row align-items-center" href="{{ route('profile.edit') }}">
 																<img src="{{ asset($user->image) }}" alt="{{ $user->name }}" style="width: 50px; height: 50px"
 																				class="rounded-circle">
-																<div class="d-flex flex-column ms-2">
+																<div class="d-flex flex-column ms-3">
 																				<span class="fs-6 text-white">{{ $user->name }}</span>
 																				<span class="text-white" style="font-size: 12px">{{ $user->status }}</span>
 																</div>
-
 												</a>
 
 												<div class="d-flex flex-row mx-2 align-items-center">
+
 																<button class="btn btn-primary active" type="button" id="addContactButton">
 																				<svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor"
 																								class="bi bi-person-fill-add" viewBox="0 0 16 16">
@@ -30,6 +30,15 @@
 																				</svg>
 																</button>
 
+																<button class="btn btn-primary active" type="button" id="blockedContactsButton">
+																				<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor"
+																								class="bi bi-bookmark-x" viewBox="0 0 16 16">
+																								<path fill-rule="evenodd"
+																												d="M6.146 5.146a.5.5 0 0 1 .708 0L8 6.293l1.146-1.147a.5.5 0 1 1 .708.708L8.707 7l1.147 1.146a.5.5 0 0 1-.708.708L8 7.707 6.854 8.854a.5.5 0 1 1-.708-.708L7.293 7 6.146 5.854a.5.5 0 0 1 0-.708z" />
+																								<path
+																												d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.777.416L8 13.101l-5.223 2.815A.5.5 0 0 1 2 15.5V2zm2-1a1 1 0 0 0-1 1v12.566l4.723-2.482a.5.5 0 0 1 .554 0L13 14.566V2a1 1 0 0 0-1-1H4z" />
+																				</svg>
+																</button>
 
 																<div class="dropdown mx-2">
 																				<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="#E9E8E8"
@@ -43,20 +52,21 @@
 																								<li>
 																												<form action="{{ route('logout') }}" method="POST">
 																																@csrf
-																																<button type="submit" class="dropdown-item">Logout</button>
+																																<button type="submit" class="dropdown-item"
+																																				onclick="event.preventDefault();
+																																this.closest('form').submit();">Logout</button>
 																												</form>
 																								</li>
 																				</ul>
 																</div>
-
-
 												</div>
-
 								</div>
 
 								@livewire('create-new-contact')
 
 								@livewire('create-new-group', ['user' => $user])
+
+								@livewire('remove-blocked')
 
 
 				</nav>
@@ -89,8 +99,21 @@
 																}
 												});
 
+												$('#blockedContactsButton').click(function() {
+																if ($(this).hasClass('active')) {
+																				$(this).removeClass('active');
+																				$('#blockedContactsDiv').hide();
+
+																} else {
+																				$(this).addClass('active');
+																				$('#blockedContactsDiv').show();
+
+																}
+												});
+
 												$('#addContactButton').trigger('click');
 												$('#addGroupButton').trigger('click');
+												$('#blockedContactsButton').trigger('click');
 								});
 				</script>
 @endsection

@@ -13,9 +13,31 @@
 								@csrf
 				</form>
 
-				<form method="post" action="{{ route('profile.update') }}" class="mt-6 space-y-6">
+				<form method="post" action="{{ route('profile.update') }}" class="mt-6 space-y-6" enctype="multipart/form-data">
 								@csrf
 								@method('patch')
+
+								<div>
+												<div class="form-group row">
+																<div class="col-sm-12">
+																				<div class="form-group row">
+																								<div class="col-sm-12">
+																												<x-input-label for="image" :value="__('Photo Profile')" />
+																												<div class="form-group mt-2">
+																																<img class="mb-4" src="{{ asset(Auth::user()->image) }}"
+																																				alt="{{ Auth::user()->username }}"
+																																				style="width: 150px; height: 150px; border-radius: 50%" id="previewImg">
+
+																																<div class="mt-2">
+																																				<input class="form-control" type="file" name="image"
+																																								onchange="loadFile(event)">
+																																</div>
+																												</div>
+																								</div>
+																				</div>
+																</div>
+												</div>
+								</div>
 
 								<div>
 												<x-input-label for="name" :value="__('Name')" />
@@ -74,3 +96,17 @@
 								</div>
 				</form>
 </section>
+
+<script>
+				var loadFile = function(event) {
+								var previewImg = document.getElementById('previewImg');
+								var previewDiv = document.getElementById('previewDiv');
+
+								previewImg.src = URL.createObjectURL(event.target.files[0]);
+								previewImg.onload = function() {
+												URL.revokeObjectURL(previewImg.src) // free memory
+								};
+
+								previewDiv.style.display = 'flex';
+				};
+</script>

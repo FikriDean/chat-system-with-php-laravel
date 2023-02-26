@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
@@ -12,6 +13,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Illuminate\View\View;
+use Illuminate\Support\Str;
 
 class RegisteredUserController extends Controller
 {
@@ -32,16 +34,16 @@ class RegisteredUserController extends Controller
     {
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
-            'username' => ['required', 'string', 'max:100'],
-            'hashtag' => ['required', 'string', 'max:50', 'unique:' . User::class],
+            'username' => ['required', 'string', 'min:6', 'max:100'],
+            'hashtag' => ['required', 'string', 'min:3', 'max:50', 'unique:' . User::class],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:' . User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
         $user = User::create([
             'name' => $request->name,
-            'username' => $request->username,
-            'hashtag' => $request->hashtag,
+            'username' => Str::lower($request->username),
+            'hashtag' => Str::lower($request->hashtag),
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ]);

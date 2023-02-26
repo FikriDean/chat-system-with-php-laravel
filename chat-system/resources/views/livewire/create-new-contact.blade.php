@@ -35,6 +35,7 @@
 												</div>
 								</div>
 				@endif
+
 				<div class="input-group mb-3">
 								<span class="input-group-text" id="basic-addon1">@</span>
 								<input type="text" class="form-control me-1" placeholder="Username" wire:model="username">
@@ -47,6 +48,7 @@
 												<span class="error mt-2 text-danger bg-light p-2 w-100">{{ $message }}</span>
 								@enderror
 				</div>
+
 				<button type="button" class="btn btn-info w-100" wire:click="addRoomPerson">Add
 								Contact</button>
 </div>
