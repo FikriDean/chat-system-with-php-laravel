@@ -9,6 +9,8 @@ use App\Models\Message;
 
 class ChatMessage extends Component
 {
+    // Komponen untuk menampilkan seluruh chat
+
     // Menambahkan $listeners agar bisa di-emit dari livewire lain
     protected $listeners = [
         'refreshChatMessages' => 'refresh', // Menjalankan function refresh ketika di-emit dari livewire lain
@@ -40,6 +42,9 @@ class ChatMessage extends Component
         $this->messages = Message::orderBy('id')->whereHas('room', function ($query) use ($room_code) {
             $query->where('room_code', $room_code);
         })->get();
+
+        // Browser event emit untuk memberikan informasi bahwa component diubah. Akan menjalankan function auto scroll di blade sehingga ketika chat dikirim, akan auto ke scroll ke paling bawah(chat terakhir)
+        $this->dispatchBrowserEvent('contentChanged');
     }
 
     public function closeChat()

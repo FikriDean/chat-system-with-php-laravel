@@ -9,6 +9,8 @@ use Illuminate\Support\Facades\Auth;
 
 class MessageInput extends Component
 {
+    // Komponen yang digunakan untuk mengirim pesan(message)
+
     // Menambahkan $listeners agar bisa di-emit dari livewire lain
     protected $listeners = [
         'refreshInput' => 'refresh',

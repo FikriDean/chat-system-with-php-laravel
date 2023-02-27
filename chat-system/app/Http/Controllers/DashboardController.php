@@ -10,6 +10,7 @@ use App\Models\User;
 
 class DashboardController extends Controller
 {
+    // Sebagai tempat dimana seluruh komponen ditampilkan
     public function index()
     {
         // Mengirimkan data user yang sedang login dan seluruh user yang ada di database

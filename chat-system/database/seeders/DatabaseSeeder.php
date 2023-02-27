@@ -83,7 +83,7 @@ class DatabaseSeeder extends Seeder
 
         Room::create([
             'room_code' => 'dfe419824FDr',
-            'room_name' => 'Kelompok Matematika'
+            'room_name' => 'Budi Bin Afwan Fikri Dean'
         ]);
 
         Room::create([
@@ -93,7 +93,7 @@ class DatabaseSeeder extends Seeder
 
         Room::create([
             'room_code' => 'dfe419824FDr3',
-            'room_name' => 'Kelompok Tekno Informatika'
+            'room_name' => 'Kharisma Binti Humaira Fikri Dean'
         ]);
 
         Room::create([

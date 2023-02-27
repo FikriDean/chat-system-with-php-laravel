@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 
 class UploadController extends Controller
 {
+    // Digunakan untuk mengunggah foto profil grup
     public function upload(Request $request)
     {
         // Mengecek request file bernama image

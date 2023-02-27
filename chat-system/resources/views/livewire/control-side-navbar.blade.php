@@ -1,6 +1,9 @@
+{{-- Komponen kontrol untuk profil user yang sedang login(link untuk cek profil, dropdown logout) --}}
+
 <div>
 				<nav class="navbar d-flex flex-column bg-primary border-1 border-light border-end">
 								<div class="d-flex justify-content-between align-items-center w-100">
+												{{-- Link untuk mengatur profil --}}
 												<a class="navbar-brand ps-4 d-flex flex-row align-items-center" href="{{ route('profile.edit') }}">
 																<img src="{{ asset($user->image) }}" alt="{{ $user->name }}" style="width: 50px; height: 50px"
 																				class="rounded-circle">
@@ -11,7 +14,7 @@
 												</a>
 
 												<div class="d-flex flex-row mx-2 align-items-center">
-
+																{{-- Button untuk menampilkan div addContact --}}
 																<button class="btn btn-primary active" type="button" id="addContactButton">
 																				<svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor"
 																								class="bi bi-person-fill-add" viewBox="0 0 16 16">
@@ -22,6 +25,7 @@
 																				</svg>
 																</button>
 
+																{{-- Button untuk menampilkan div addGroup --}}
 																<button class="btn btn-primary active" type="button" id="addGroupButton">
 																				<svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor"
 																								class="bi bi-grid-3x3" viewBox="0 0 16 16">
@@ -30,6 +34,7 @@
 																				</svg>
 																</button>
 
+																{{-- Button untuk menampilkan kumpulan kontak yang di blokir --}}
 																<button class="btn btn-primary active" type="button" id="blockedContactsButton">
 																				<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor"
 																								class="bi bi-bookmark-x" viewBox="0 0 16 16">
@@ -49,6 +54,7 @@
 																				</svg>
 
 																				<ul class="dropdown-menu">
+																								{{-- Bagian yang digunakan ketika ingin logout --}}
 																								<li>
 																												<form action="{{ route('logout') }}" method="POST">
 																																@csrf
@@ -62,10 +68,9 @@
 												</div>
 								</div>
 
+								{{-- Memasukkan komponen-komponen livewire yang dibutuhkan --}}
 								@livewire('create-new-contact')
-
 								@livewire('create-new-group', ['user' => $user])
-
 								@livewire('remove-blocked')
 
 
@@ -75,42 +80,51 @@
 @section('custom_scripts')
 				<script>
 								$(document).ready(function() {
+												// Ketika button dengan id addContactButton ditekan
 												$('#addContactButton').click(function() {
+																// Tambahkan kelas 'active' jika button belum memiliki kelas tersebut
 																if ($(this).hasClass('active')) {
 																				$(this).removeClass('active');
 																				$('#addContactDiv').hide();
 
 																} else {
+																				// Hapus kelas 'active' jika button memiliki kelas tersebut
 																				$(this).addClass('active');
 																				$('#addContactDiv').show();
-
 																}
 												});
 
+												// Ketika button dengan id addGroupButton ditekan
 												$('#addGroupButton').click(function() {
+																// Tambahkan kelas 'active' jika button belum memiliki kelas tersebut
 																if ($(this).hasClass('active')) {
 																				$(this).removeClass('active');
 																				$('#addGroupDiv').hide();
 
 																} else {
+																				// Hapus kelas 'active' jika button memiliki kelas tersebut
 																				$(this).addClass('active');
 																				$('#addGroupDiv').show();
 
 																}
 												});
 
+												// Ketika button dengan id blockedContactsButton ditekan
 												$('#blockedContactsButton').click(function() {
+																// Tambahkan kelas 'active' jika button belum memiliki kelas tersebut
 																if ($(this).hasClass('active')) {
 																				$(this).removeClass('active');
 																				$('#blockedContactsDiv').hide();
 
 																} else {
+																				// Hapus kelas 'active' jika button memiliki kelas tersebut
 																				$(this).addClass('active');
 																				$('#blockedContactsDiv').show();
 
 																}
 												});
 
+												// Tekan button-button yang sebelumnya sudah diatur(karena div tidak dalam kondisi 'none')
 												$('#addContactButton').trigger('click');
 												$('#addGroupButton').trigger('click');
 												$('#blockedContactsButton').trigger('click');

@@ -1,3 +1,5 @@
+{{-- Layout custom yang digunakan --}}
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -14,6 +16,7 @@
 				<link rel="stylesheet" href="{{ asset('plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
 				<link rel="stylesheet" href="{{ asset('plugins/datatables-responsive/css/responsive.bootstrap4.min.css') }}">
 
+				{{-- Font Awesome --}}
 				<script src="https://kit.fontawesome.com/91ba5df506.js" crossorigin="anonymous"></script>
 
 				{{-- Own CSS --}}
@@ -23,26 +26,19 @@
 </head>
 
 <body>
+
+				{{-- Section Content --}}
 				@yield('content')
 
+				{{-- Bootstrap --}}
 				<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
 								integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous">
 				</script>
-
-				<script>
-								document.addEventListener('trix-file-accept', function(e) {
-												e.preventDefault();
-								})
-				</script>
-
-				{{-- Bootstrap CDN --}}
-				<script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js"></script>
 
 				<!-- jQuery -->
 				<script src="{{ asset('plugins/jquery/jquery.min.js') }}"></script>
 				<!-- jQuery UI 1.11.4 -->
 				<script src="{{ asset('plugins/jquery-ui/jquery-ui.min.js') }}"></script>
-
 
 				<!-- DataTables  & Plugins -->
 				<script src="{{ asset('plugins/datatables/jquery.dataTables.min.js') }}"></script>
@@ -59,6 +55,7 @@
 				<script src="{{ asset('plugins/datatables-buttons/js/buttons.colVis.min.js') }}"></script>
 
 				<script>
+								// Datatable Scripts
 								$(function() {
 												$("#chatlist").DataTable({
 																"responsive": true,
@@ -113,6 +110,7 @@
 
 				@livewireScripts
 
+				{{-- Section Custom Scripts --}}
 				@yield('custom_scripts')
 
 </body>

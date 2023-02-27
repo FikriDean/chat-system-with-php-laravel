@@ -3,12 +3,11 @@
 namespace App\Http\Livewire;
 
 use Livewire\Component;
-use App\Models\Room;
-use App\Models\User;
-use Illuminate\Support\Facades\Auth;
 
 class ControlSideNavbar extends Component
 {
+    // Komponen kontrol untuk profil user yang sedang login(link untuk cek profil, dropdown logout)
+
     // Menambahkan $listeners agar bisa di-emit dari livewire lain
     protected $listeners = [
         'refreshControl' => 'refresh',

@@ -1,5 +1,7 @@
+{{-- Komponen yang digunakan untuk menambah room(grup) --}}
 <div class="flex-column justify-content-center align-items-center p-4 w-100" id="addGroupDiv">
 				<div>
+								{{-- Bagian untuk pencarian user dengan menggunakan username --}}
 								<div class="input-group mb-3">
 												<span class="input-group-text">
 																<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
@@ -11,12 +13,14 @@
 												<input type="text" class="form-control" placeholder="Search by username" wire:model='search'>
 								</div>
 
+								{{-- Informasi yang akan ditampilkan jika tidak ada user(kontak) yang dipilih --}}
 								@if (session()->has('emptySelected'))
 												<div class="alert alert-danger">
 																{{ session('emptySelected') }}
 												</div>
 								@endif
 
+								{{-- Informasi yang akan ditampilkan jika room(grup) berhasil dibuat --}}
 								@if (session()->has('roomCreated'))
 												<div class="alert alert-success">
 																<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
@@ -28,6 +32,7 @@
 												</div>
 								@endif
 
+								{{-- Tabel untuk menampilkan seluruh user(kontak) yang berkaitan dengan user yang sedang login --}}
 								<table class="table table-bordered table-striped m-0 p-0">
 												<thead>
 																<tr>
@@ -37,10 +42,15 @@
 																</tr>
 												</thead>
 												<tbody class="bg-light">
+																{{-- Pengulangan untuk seluruh room(kontak) --}}
 																@foreach ($relatedRoom as $room)
+																				{{-- Pengecekan untuk room yang terdiri atas 2 orang --}}
 																				@if ($room->users->count() == 2)
+																								{{-- Pengulangan user-user yang ada di room --}}
 																								@foreach ($room->users as $relatedUser)
+																												{{-- Pengecekan jika user bukanlah user yang sedang login --}}
 																												@if ($relatedUser->id != Auth::id())
+																																{{-- Menampilkan user --}}
 																																<tr>
 																																				<td>
 																																								<input class="form-check-input me-2" type="checkbox"
@@ -53,31 +63,17 @@
 																								@endforeach
 																				@endif
 																@endforeach
-																{{-- @foreach ($rooms as $room)
-																				@if ($room->users->count() == 2 && $room->users->where('id', Auth::id())->first())
-																								@foreach ($room->users as $userInRoom)
-																												@if ($userInRoom->id != Auth::id())
-																																<tr>
-																																				<td>
-																																								<input class="form-check-input me-2" type="checkbox"
-																																												wire:model='selectedContacts' value={{ $userInRoom['id'] }}
-																																												wire:key="item-{{ $userInRoom['id'] }}">
-																																								<span>{{ $userInRoom['name'] }}</span>
-																																				</td>
-																																</tr>
-																												@endif
-																								@endforeach
-																				@endif
-																@endforeach --}}
 												</tbody>
 								</table>
 
+								{{-- Input untuk nama grup --}}
 								<div class="input-group mt-4">
 												<span class="input-group-text" id="basic-addon1">Group Name</span>
 												<input type="text" class="form-control" placeholder="Type the name of the group..."
 																wire:model='groupName'>
 								</div>
 
+								{{-- Error realtime untuk nama grup dengan menggunakan realtime validation dari livewire --}}
 								@error('groupName')
 												<div class="bg-danger p-2 w-100 mt-2 rounded">
 																<span class="error text-white">{{ $message }}</span>
@@ -85,5 +81,6 @@
 								@enderror
 				</div>
 
+				{{-- Button untuk menjalankan function addRoomGroup(menambahkan grup) --}}
 				<button class="btn btn-info w-100 mt-4" wire:click='addRoomGroup'>Create Group</button>
 </div>

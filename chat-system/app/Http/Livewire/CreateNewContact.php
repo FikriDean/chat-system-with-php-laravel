@@ -10,6 +10,8 @@ use Illuminate\Support\Facades\Auth;
 
 class CreateNewContact extends Component
 {
+    // Komponen yang digunakan untuk menambah room(kontak)
+
     // Membuat variable yang dibutuhkan
     public $user;
     public $username;
@@ -108,7 +110,7 @@ class CreateNewContact extends Component
         // Room akan dibuat
         $newRoom = Room::create([
             'room_code' => $this->getRoomCode(), // room_code didapatkan dengan menggunakan function getRoomCode
-            'room_name' => $accountValid->name // room_name akan diisi dengan nama dari akun yang akan didaftarkan
+            'room_name' => $accountValid->name . ' ' . Auth::user()->username // room_name akan diisi dengan nama dari akun yang akan didaftarkan + nama yang sedang login guna mencari target user(yang tidak sedang login) di kedua sisi user yang ada di room (bukan cara terbaik)
         ]);
 
         // Melakukan attach user-user yang berkaitan dengan room yang baru saja dibuat

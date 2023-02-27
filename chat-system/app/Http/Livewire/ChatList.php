@@ -10,6 +10,8 @@ use App\Models\Room;
 
 class ChatList extends Component
 {
+    // Komponen yang digunakan untuk menampilkan seluruh room(kontak orang dan grup)
+
     // Menambahkan $listeners agar bisa di-emit dari livewire lain
     protected $listeners = [
         'refreshChatList' => 'refresh', // Menjalankan function refresh ketika di emit dari livewire lain

@@ -1,4 +1,7 @@
+{{-- Komponen yang digunakan untuk menambah room(kontak) --}}
+
 <div class="flex-column justify-content-between align-items-center w-100 p-4" id="addContactDiv">
+				{{-- Informasi yang akan ditampilkan jika ditemukan bahwa room(kontak) sudah ada --}}
 				@if ($roomHasBeenCreated == true)
 								<div class="alert alert-warning d-flex align-items-center" role="alert">
 												<svg xmlns="http://www.w3.org/2000/svg" class="bi bi-exclamation-triangle-fill flex-shrink-0 me-2"
@@ -12,6 +15,7 @@
 								</div>
 				@endif
 
+				{{-- Informasi yang akan ditampilkan jika user yang dicari tidak ditemukan --}}
 				@if ($accountInvalid == true)
 								<div class="alert alert-primary d-flex align-items-center" role="alert">
 												<svg xmlns="http://www.w3.org/2000/svg" class="bi bi-exclamation-triangle-fill flex-shrink-0 me-2"
@@ -25,6 +29,7 @@
 								</div>
 				@endif
 
+				{{-- Informasi yang akan ditampilkan ketika room(kontak) berhasil dibuat --}}
 				@if ($newRoomCreated == true)
 								<div class="alert alert-success d-flex align-items-center" role="alert">
 												<svg width="14" height="14" class="bi flex-shrink-0 me-2" role="img" aria-label="Success:">
@@ -36,6 +41,7 @@
 								</div>
 				@endif
 
+				{{-- Informasi yang akan ditampilkan jika room(kontak) yang dicari sedang di blokir --}}
 				@if ($contactIsBlocked == true)
 								<div class="alert alert-danger d-flex align-items-center" role="alert">
 												<svg xmlns="http://www.w3.org/2000/svg" class="bi bi-exclamation-triangle-fill flex-shrink-0 me-2"
@@ -49,19 +55,28 @@
 								</div>
 				@endif
 
+				{{-- Input untuk mencari user dengan mamsukkan username dan hashtag --}}
 				<div class="input-group mb-3">
 								<span class="input-group-text" id="basic-addon1">@</span>
+								{{-- Input yang terhubungan dengan variabel username --}}
 								<input type="text" class="form-control me-1" placeholder="Username" wire:model="username">
+
 								<span class="input-group-text ms-1" id="basic-addon1">#</span>
+								{{-- Input yang terhubungan dengan variabel hashtag --}}
 								<input type="text" class="form-control" placeholder="Hashtag" wire:model="hashtag">
+
+								{{-- Error realtime untuk username dengan menggunakan realtime validation dari livewire --}}
 								@error('username')
 												<span class="error mt-2 text-danger bg-light p-2 w-100">{{ $message }}</span>
 								@enderror
+
+								{{-- Error realtime untuk hashtag dengan menggunakan realtime validation dari livewire --}}
 								@error('hashtag')
 												<span class="error mt-2 text-danger bg-light p-2 w-100">{{ $message }}</span>
 								@enderror
 				</div>
 
+				{{-- Button untuk menjalankan function addRoomPerson(menambahkan kontak) --}}
 				<button type="button" class="btn btn-info w-100" wire:click="addRoomPerson">Add
 								Contact</button>
 </div>

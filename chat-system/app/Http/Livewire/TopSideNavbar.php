@@ -6,12 +6,16 @@ use Livewire\Component;
 use App\Models\Room;
 use App\Models\User;
 use App\Models\BlockedContact;
+use App\Models\Message;
 use Illuminate\Support\Facades\Auth;
 use Livewire\WithFileUploads;
 use Illuminate\Support\Facades\Storage;
 
 class TopSideNavbar extends Component
 {
+    // Komponen yang digunakan untuk mengecek/mengatur profile room(kontak dan grup) dan menutup chat
+
+    // livewire upload
     use WithFileUploads;
 
     // Menambahkan $listeners agar bisa di-emit dari livewire lain
@@ -133,8 +137,14 @@ class TopSideNavbar extends Component
             return;
         }
 
+        // Mendapatkan room dengan menyocokkan room_code
+        $room = Room::where('room_code', $this->room->room_code)->first();
+
+        // menghapus messages dengan menyocokkan room_id dengan id pada room yang sudah didapatkan sebelumnya
+        Message::where('room_id', $room->id)->delete();
+
         // Menghapus room terkait dengan mencocokkan room_code
-        Room::where('room_code', $this->room->room_code)->delete();
+        $room->delete();
 
         // Mendapatkan user dengan id(parameter)
         $user = User::where('id', $id)->first();

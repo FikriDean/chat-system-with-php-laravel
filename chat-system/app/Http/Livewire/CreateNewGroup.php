@@ -9,19 +9,21 @@ use App\Models\Room;
 
 class CreateNewGroup extends Component
 {
+    // Komponen yang digunakan untuk menambah room(grup)
+
     // Membuat variable yang dibutuhkan
     public $user;
     public $selectedContacts = [];
     public $groupName;
     public $search;
 
-    // Menambahkan query search(realtime dari livewire)
-    protected $queryString = [
-        'search' => ['except' => '', 'as' => 's'] // menyingkatkan dari 'search' ke 's'
-    ];
-
     // Menambahkan $listeners agar bisa di-emit dari livewire lain
     protected $listeners = ['refreshContact' => 'refresh'];
+
+    // Menambahkan query search(realtime dari livewire)
+    protected $queryString = [
+        'search' => ['except' => '', 'as' => 'sc'] // menyingkatkan dari 'search' ke 's'
+    ];
 
     // Validasi realtime dari livewire
     protected $rules = [
